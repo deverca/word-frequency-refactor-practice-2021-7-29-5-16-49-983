@@ -12,10 +12,8 @@ public class WordFrequencyGame {
         } else {
 
             try {
-                List<WordCount> wordCountList = calculateWordFrequency(sentence);
-
-                wordCountList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-
+                List<WordCount> wordCountList = sortWordCount(calculateWordFrequency(sentence));
+                sortWordCount(wordCountList);
                 StringJoiner joiner = new StringJoiner("\n");
                 for (WordCount w : wordCountList) {
                     String s = w.getValue() + " " + w.getWordCount();
@@ -24,10 +22,14 @@ public class WordFrequencyGame {
                 return joiner.toString();
             } catch (Exception e) {
 
-
                 return "Calculate Error";
             }
         }
+    }
+
+    private List<WordCount> sortWordCount(List<WordCount> wordCountList) {
+        wordCountList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+        return wordCountList;
     }
 
     private List<WordCount> calculateWordFrequency(String sentence) {
