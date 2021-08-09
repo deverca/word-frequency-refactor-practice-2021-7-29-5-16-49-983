@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
     public static final String WHITE_SPACE = "\\s+";
 
-    public String getResult(String sentence) {
+    public String getFrequencyResult(String sentence) {
         try {
             List<WordInfo> wordInfos = calculateWordFrequency(sentence);
             sortWordCounts(wordInfos);
