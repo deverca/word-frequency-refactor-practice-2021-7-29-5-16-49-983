@@ -5,19 +5,12 @@ public class WordFrequencyGame {
     public static final String WHITE_SPACE = "\\s+";
 
     public String getResult(String sentence) {
+        try {
+            List<WordInfo> wordInfos = sortWordCounts(calculateWordFrequency(sentence)); //todo:
+            return joinWordCounts(wordInfos);
+        } catch (Exception e) {
 
-
-        if (sentence.split(WHITE_SPACE).length == 1) { //todo: remove if
-            return sentence + " 1";
-        } else {
-
-            try {
-                List<WordInfo> wordInfos = sortWordCounts(calculateWordFrequency(sentence)); //todo:
-                return joinWordCounts(wordInfos);
-            } catch (Exception e) {
-
-                return "Calculate Error";
-            }
+            return "Calculate Error";
         }
     }
 
