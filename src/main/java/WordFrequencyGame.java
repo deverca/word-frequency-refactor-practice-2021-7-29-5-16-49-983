@@ -12,8 +12,8 @@ public class WordFrequencyGame {
         } else {
 
             try {
-                List<WordCount> wordCounts = sortWordCounts(calculateWordFrequency(sentence)); //todo:
-                return joinWordCounts(wordCounts);
+                List<WordInfo> wordInfos = sortWordCounts(calculateWordFrequency(sentence)); //todo:
+                return joinWordCounts(wordInfos);
             } catch (Exception e) {
 
                 return "Calculate Error";
@@ -21,30 +21,30 @@ public class WordFrequencyGame {
         }
     }
 
-    private String joinWordCounts(List<WordCount> wordCounts) {
+    private String joinWordCounts(List<WordInfo> wordInfos) {
         StringJoiner joinedWordCounts = new StringJoiner("\n");
-        wordCounts.forEach(wordCount -> {
-            joinedWordCounts.add(wordCount.getValue() + " " + wordCount.getWordCount());
+        wordInfos.forEach(wordInfo -> {
+            joinedWordCounts.add(wordInfo.getValue() + " " + wordInfo.getWordCount());
         });
         return joinedWordCounts.toString();
     }
 
-    private List<WordCount> sortWordCounts(List<WordCount> wordCountList) {
-        wordCountList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-        return wordCountList;
+    private List<WordInfo> sortWordCounts(List<WordInfo> wordInfos) {
+        wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+        return wordInfos;
     }
 
-    private List<WordCount> calculateWordFrequency(String sentence) {
+    private List<WordInfo> calculateWordFrequency(String sentence) {
 
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACE));
         List<String> uniqueWords = words.stream().distinct().collect(Collectors.toList());
 
-        List<WordCount> wordCounts = new ArrayList<>();
+        List<WordInfo> wordInfos = new ArrayList<>();
         uniqueWords.forEach(uniqueWord -> {
             int count = (int) words.stream().filter(uniqueWord::equals).count();
-            wordCounts.add(new WordCount(uniqueWord, count));
+            wordInfos.add(new WordInfo(uniqueWord, count));
         });
-        return wordCounts;
+        return wordInfos;
     }
 
 }
