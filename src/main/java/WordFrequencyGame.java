@@ -6,7 +6,8 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         try {
-            List<WordInfo> wordInfos = sortWordCounts(calculateWordFrequency(sentence)); //todo:
+            List<WordInfo> wordInfos = calculateWordFrequency(sentence);
+            sortWordCounts(wordInfos);
             return joinWordCounts(wordInfos);
         } catch (Exception e) {
 
@@ -22,9 +23,8 @@ public class WordFrequencyGame {
         return joinedWordCounts.toString();
     }
 
-    private List<WordInfo> sortWordCounts(List<WordInfo> wordInfos) {
+    private void sortWordCounts(List<WordInfo> wordInfos) {
         wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-        return wordInfos;
     }
 
     private List<WordInfo> calculateWordFrequency(String sentence) {
