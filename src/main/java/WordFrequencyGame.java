@@ -7,23 +7,26 @@ public class WordFrequencyGame {
     public String getResult(String sentence) {
 
 
-        if (sentence.split(WHITE_SPACE).length == 1) {
+        if (sentence.split(WHITE_SPACE).length == 1) { //todo: remove if
             return sentence + " 1";
         } else {
 
             try {
-                List<WordCount> wordCounts = sortWordCounts(calculateWordFrequency(sentence));
-                StringJoiner joiner = new StringJoiner("\n");
-                for (WordCount w : wordCounts) {
-                    String s = w.getValue() + " " + w.getWordCount();
-                    joiner.add(s);
-                }
-                return joiner.toString();
+                List<WordCount> wordCounts = sortWordCounts(calculateWordFrequency(sentence)); //todo:
+                return joinWordCounts(wordCounts);
             } catch (Exception e) {
 
                 return "Calculate Error";
             }
         }
+    }
+
+    private String joinWordCounts(List<WordCount> wordCounts) {
+        StringJoiner joinedWordCounts = new StringJoiner("\n");
+        wordCounts.forEach(wordCount -> {
+            joinedWordCounts.add(wordCount.getValue() + " " + wordCount.getWordCount());
+        });
+        return joinedWordCounts.toString();
     }
 
     private List<WordCount> sortWordCounts(List<WordCount> wordCountList) {
