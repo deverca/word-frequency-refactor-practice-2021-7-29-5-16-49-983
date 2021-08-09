@@ -12,10 +12,10 @@ public class WordFrequencyGame {
         } else {
 
             try {
-                List<WordCount> wordCountList = sortWordCount(calculateWordFrequency(sentence));
-                sortWordCount(wordCountList);
+                List<WordCount> wordCounts = sortWordCount(calculateWordFrequency(sentence));
+                sortWordCount(wordCounts);
                 StringJoiner joiner = new StringJoiner("\n");
-                for (WordCount w : wordCountList) {
+                for (WordCount w : wordCounts) {
                     String s = w.getValue() + " " + w.getWordCount();
                     joiner.add(s);
                 }
