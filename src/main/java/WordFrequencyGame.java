@@ -20,7 +20,7 @@ public class WordFrequencyGame {
     private String joinWordCounts(List<WordInfo> wordInfos) {
         StringJoiner joinedWordCounts = new StringJoiner("\n");
         wordInfos.forEach(wordInfo -> {
-            joinedWordCounts.add(wordInfo.getValue() + " " + wordInfo.getWordCount());
+            joinedWordCounts.add(wordInfo.getWord() + " " + wordInfo.getWordCount());
         });
         return joinedWordCounts.toString();
     }
